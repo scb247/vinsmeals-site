@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vin's Meals — Fresh meal prep, made with care</title>
+<meta name="description" content="Fresh, healthy meal prep made with care and full of flavour. Weekly rotating menus, ready-to-eat, delivered to your door.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   VIN'S MEALS — EDIT THESE TWO LINES TO GO LIVE
+   ============================================================ */
+:root{
+  /* ↓ Put Vin's WhatsApp number here in full international format, no +, no spaces */
+  --x-whatsapp:"447000000000";
+  /* Price per meal in £ is set in the <script> at the bottom (PRICE_PER_MEAL) */
+}
+/* ============================================================ */
+
+:root{
+  --teal-900:#063b38;
+  --teal-700:#0c5d56;
+  --teal-500:#12897e;
+  --teal-400:#1fa898;
+  --teal-300:#54c9b8;
+  --teal-100:#cdeee7;
+  --cream:#f6f4ec;
+  --cream-2:#efece1;
+  --ink:#0a201e;
+  --lime:#c9f24d;
+  --paper:#fbfaf5;
+  --shadow:0 18px 50px -20px rgba(6,59,56,.45);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Fraunces',serif;font-weight:600;line-height:1.02;letter-spacing:-.02em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{font-family:'Plus Jakarta Sans';font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-500)}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:80;background:rgba(246,244,236,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(6,59,56,.08)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Fraunces';font-weight:700;font-size:1.35rem;color:var(--teal-900);text-decoration:none}
+.logo .mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--teal-400),var(--teal-700));display:grid;place-items:center;color:var(--lime);font-size:1.1rem;box-shadow:var(--shadow)}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{color:var(--teal-900);text-decoration:none;font-weight:600;font-size:.95rem;opacity:.8}
+.nav-links a:hover{opacity:1}
+.nav-cart{position:relative;background:var(--teal-900);color:var(--cream);border:none;padding:11px 20px;border-radius:999px;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.2s}
+.nav-cart:hover{background:var(--teal-700)}
+.nav-cart .count{background:var(--lime);color:var(--teal-900);border-radius:999px;min-width:20px;height:20px;display:grid;place-items:center;font-size:.75rem;font-weight:700;padding:0 5px}
+@media(max-width:720px){.nav-links a:not(.menu-jump){display:none}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:84px 0 70px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 80% at 85% 10%,rgba(31,168,152,.16),transparent 60%),
+  radial-gradient(50% 60% at 5% 90%,rgba(18,137,126,.12),transparent 60%);z-index:0}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(2.7rem,6vw,4.5rem);color:var(--teal-900);font-weight:600}
+.hero h1 em{font-style:italic;color:var(--teal-500)}
+.hero p.lead{font-size:1.18rem;margin:22px 0 30px;max-width:30ch;color:#2c4a47}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;font-family:inherit;font-weight:700;text-decoration:none;border-radius:999px;transition:transform .15s,box-shadow .2s,background .2s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--teal-900);color:var(--cream);padding:16px 28px;font-size:1rem;box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--teal-700)}
+.btn-ghost{background:transparent;color:var(--teal-900);padding:16px 24px;border:1.5px solid rgba(6,59,56,.25);font-size:1rem}
+.btn-ghost:hover{border-color:var(--teal-700);background:rgba(18,137,126,.06)}
+.hero-stats{display:flex;gap:30px;margin-top:38px}
+.hero-stats .s b{font-family:'Fraunces';font-size:1.7rem;color:var(--teal-700);display:block;font-weight:700}
+.hero-stats .s span{font-size:.82rem;color:#3a5b58;font-weight:600}
+
+/* hero plate visual (no photo) */
+.hero-art{position:relative;aspect-ratio:1/1;max-width:420px;margin-left:auto;width:100%}
+.plate{position:absolute;inset:0;border-radius:50%;background:linear-gradient(145deg,#fff,#e9f5f1);box-shadow:0 40px 80px -30px rgba(6,59,56,.5),inset 0 0 0 18px rgba(255,255,255,.7);display:grid;place-items:center}
+.plate-inner{width:62%;height:62%;border-radius:50%;background:conic-gradient(from 20deg,var(--teal-300),var(--teal-500),var(--teal-700),var(--lime),var(--teal-400),var(--teal-300));position:relative;box-shadow:inset 0 0 30px rgba(6,59,56,.25)}
+.plate-inner::after{content:"";position:absolute;inset:26%;border-radius:50%;background:rgba(246,244,236,.92)}
+.chip{position:absolute;background:#fff;border-radius:16px;padding:11px 15px;box-shadow:var(--shadow);font-weight:700;font-size:.85rem;display:flex;align-items:center;gap:8px;animation:float 5s ease-in-out infinite}
+.chip .dot{width:10px;height:10px;border-radius:50%}
+.chip.c1{top:6%;left:-6%}
+.chip.c2{bottom:14%;right:-8%;animation-delay:1.6s}
+.chip.c3{bottom:-2%;left:14%;animation-delay:.8s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:36px}.hero-art{margin:0 auto;max-width:340px}.hero p.lead{max-width:none}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--teal-900);color:var(--teal-100);padding:15px 0;overflow:hidden;white-space:nowrap}
+.marquee .track{display:inline-flex;gap:48px;animation:scroll 26s linear infinite;font-family:'Fraunces';font-style:italic;font-size:1.15rem}
+.marquee .track span{opacity:.9}
+.marquee .track b{color:var(--lime)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- SECTION SHELL ---------- */
+section.block{padding:88px 0}
+.sec-head{max-width:620px;margin-bottom:46px}
+.sec-head h2{font-size:clamp(2rem,4.5vw,3rem);color:var(--teal-900);margin:14px 0}
+.sec-head p{color:#3a5b58;font-size:1.08rem}
+
+/* ---------- VALUES ---------- */
+.values{background:var(--paper)}
+.val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.val{background:var(--cream);border:1px solid rgba(6,59,56,.08);border-radius:20px;padding:26px 22px;transition:.25s}
+.val:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
+.val .ico{width:48px;height:48px;border-radius:13px;background:var(--teal-100);display:grid;place-items:center;font-size:1.4rem;margin-bottom:16px}
+.val h3{font-size:1.18rem;color:var(--teal-900);margin-bottom:7px}
+.val p{font-size:.92rem;color:#3a5b58}
+@media(max-width:860px){.val-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.val-grid{grid-template-columns:1fr}}
+
+/* ---------- HOW IT WORKS ---------- */
+.how{background:var(--teal-900);color:var(--cream);position:relative;overflow:hidden}
+.how::before{content:"";position:absolute;top:-40%;right:-10%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(31,168,152,.25),transparent 70%)}
+.how .sec-head h2{color:var(--cream)}
+.how .sec-head .eyebrow{color:var(--lime)}
+.how .sec-head p{color:var(--teal-100)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1}
+.step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:32px 26px;position:relative}
+.step .num{font-family:'Fraunces';font-size:3.4rem;font-weight:900;color:var(--lime);line-height:.8;opacity:.95}
+.step .day{display:inline-block;margin:18px 0 10px;background:var(--teal-400);color:var(--teal-900);font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;padding:5px 13px;border-radius:999px}
+.step h3{font-size:1.3rem;color:var(--cream);margin-bottom:8px}
+.step p{color:var(--teal-100);font-size:.95rem}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* ---------- MENU / ORDER BUILDER ---------- */
+.menu{background:var(--cream-2)}
+.menu-tabs{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap}
+.tab{background:var(--cream);border:1.5px solid rgba(6,59,56,.15);color:var(--teal-900);font-family:inherit;font-weight:700;font-size:.92rem;padding:10px 20px;border-radius:999px;cursor:pointer;transition:.2s}
+.tab.active{background:var(--teal-900);color:var(--cream);border-color:var(--teal-900)}
+.meal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:900px){.meal-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.meal-grid{grid-template-columns:repeat(2,1fr)}}
+.meal{background:var(--cream);border:1px solid rgba(6,59,56,.09);border-radius:20px;overflow:hidden;cursor:pointer;transition:.22s;position:relative;display:flex;flex-direction:column}
+.meal:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.meal.in-cart{border-color:var(--teal-400);box-shadow:0 0 0 2px var(--teal-400)}
+.meal-thumb{aspect-ratio:4/3;position:relative;display:grid;place-items:center;color:rgba(255,255,255,.92)}
+.meal-thumb .veg-tag,.meal-thumb .meat-tag{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.9);color:var(--teal-900);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+.meal-thumb .glyph{font-family:'Fraunces';font-style:italic;font-weight:700;font-size:1.7rem;opacity:.9;text-shadow:0 2px 12px rgba(0,0,0,.2)}
+.meal-body{padding:15px 16px 17px;flex:1;display:flex;flex-direction:column}
+.meal-body h4{font-family:'Fraunces';font-size:1.05rem;color:var(--teal-900);font-weight:600;line-height:1.12;margin-bottom:5px}
+.meal-body .desc{font-size:.8rem;color:#5a716e;flex:1}
+.meal-foot{display:flex;align-items:center;justify-content:space-between;margin-top:13px}
+.meal-foot .price{font-weight:700;color:var(--teal-700)}
+.add-ctrl{display:flex;align-items:center;gap:0}
+.add-btn{background:var(--teal-900);color:var(--cream);border:none;width:34px;height:34px;border-radius:10px;font-size:1.2rem;cursor:pointer;display:grid;place-items:center;font-family:inherit;transition:.18s}
+.add-btn:hover{background:var(--teal-700)}
+.qty-ctrl{display:flex;align-items:center;gap:10px}
+.qty-ctrl button{background:var(--teal-100);color:var(--teal-900);border:none;width:30px;height:30px;border-radius:9px;font-size:1.1rem;cursor:pointer;font-weight:700}
+.qty-ctrl span{font-weight:700;min-width:18px;text-align:center;color:var(--teal-900)}
+.hidden{display:none!important}
+
+/* color palette for thumbs */
+.bg-a{background:linear-gradient(140deg,#0c5d56,#1fa898)}
+.bg-b{background:linear-gradient(140deg,#12897e,#54c9b8)}
+.bg-c{background:linear-gradient(140deg,#063b38,#12897e)}
+.bg-d{background:linear-gradient(140deg,#1fa898,#c9f24d)}
+.bg-e{background:linear-gradient(140deg,#0c5d56,#2c8c6f)}
+.bg-f{background:linear-gradient(140deg,#177e72,#54c9b8)}
+
+/* ---------- CART DRAWER ---------- */
+.overlay{position:fixed;inset:0;background:rgba(6,59,56,.45);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:.3s}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--cream);z-index:95;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px -20px rgba(6,59,56,.5)}
+.drawer.open{transform:translateX(0)}
+.drawer-head{padding:24px 26px;border-bottom:1px solid rgba(6,59,56,.1);display:flex;justify-content:space-between;align-items:center}
+.drawer-head h3{font-size:1.4rem;color:var(--teal-900)}
+.drawer-close{background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--teal-900);line-height:1}
+.drawer-body{flex:1;overflow-y:auto;padding:20px 26px}
+.cart-empty{text-align:center;color:#5a716e;padding:50px 0}
+.cart-empty .big{font-size:2.6rem;margin-bottom:10px}
+.cart-item{display:flex;gap:13px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(6,59,56,.08)}
+.cart-item .sw{width:46px;height:46px;border-radius:11px;flex-shrink:0}
+.cart-item .ci-info{flex:1}
+.cart-item .ci-info b{display:block;font-family:'Fraunces';font-size:.98rem;color:var(--teal-900)}
+.cart-item .ci-info span{font-size:.8rem;color:#5a716e}
+.cart-item .ci-qty{display:flex;align-items:center;gap:8px}
+.cart-item .ci-qty button{background:var(--teal-100);border:none;width:26px;height:26px;border-radius:7px;cursor:pointer;font-weight:700;color:var(--teal-900)}
+.drawer-foot{padding:22px 26px;border-top:1px solid rgba(6,59,56,.1);background:var(--paper)}
+.tot-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.tot-row .lbl{color:#3a5b58;font-weight:600}
+.tot-row .amt{font-family:'Fraunces';font-size:1.9rem;font-weight:700;color:var(--teal-900)}
+.drawer-foot .btn-primary{width:100%;justify-content:center;background:#25D366;color:#063b38}
+.drawer-foot .btn-primary:hover{background:#1ebe5a}
+.drawer-foot .note{font-size:.76rem;color:#5a716e;text-align:center;margin-top:11px}
+.min-warn{font-size:.82rem;color:#b4521a;font-weight:600;text-align:center;margin-bottom:12px}
+
+/* ---------- TRUST ---------- */
+.trust{background:var(--paper)}
+.tquote{font-family:'Fraunces';font-style:italic;font-size:clamp(1.5rem,3.5vw,2.3rem);color:var(--teal-900);max-width:780px;line-height:1.25}
+.tquote span{color:var(--teal-400)}
+.tcred{margin-top:22px;font-weight:700;color:var(--teal-700)}
+.badges{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+.badge{display:flex;align-items:center;gap:10px;background:var(--cream);border:1px solid rgba(6,59,56,.1);border-radius:14px;padding:13px 18px;font-weight:600;font-size:.9rem;color:var(--teal-900)}
+.badge .b-ico{font-size:1.2rem}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:760px){.faq-grid{grid-template-columns:1fr}}
+.faq-item{background:var(--cream);border:1px solid rgba(6,59,56,.1);border-radius:16px;overflow:hidden}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 22px;font-family:inherit;font-weight:700;font-size:1rem;color:var(--teal-900);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq-q .pm{font-size:1.4rem;color:var(--teal-400);transition:.2s;flex-shrink:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#3a5b58;font-size:.94rem}
+.faq-a p{padding:0 22px 20px}
+.faq-item.open .pm{transform:rotate(45deg)}
+
+/* ---------- FOOTER / CTA ---------- */
+.final{background:var(--teal-900);color:var(--cream);text-align:center;padding:96px 0}
+.final h2{font-size:clamp(2.2rem,5vw,3.6rem);color:var(--cream);margin-bottom:18px}
+.final h2 em{font-style:italic;color:var(--lime)}
+.final p{color:var(--teal-100);font-size:1.15rem;max-width:48ch;margin:0 auto 32px}
+.final .btn-primary{background:var(--lime);color:var(--teal-900)}
+.final .btn-primary:hover{background:#d4f96a}
+footer{background:var(--teal-900);color:var(--teal-100);padding:30px 0;border-top:1px solid rgba(255,255,255,.1)}
+footer .inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:.88rem}
+footer a{color:var(--lime);text-decoration:none}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap inner">
+    <a href="#top" class="logo"><span class="mark">✦</span>Vin's Meals</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#menu" class="menu-jump">This week's menu</a>
+      <a href="#faq">FAQ</a>
+      <button class="nav-cart" id="cartBtn">🛒 Order <span class="count" id="navCount">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="reveal show">
+      <span class="eyebrow">Fresh meal prep · delivered weekly</span>
+      <h1>Healthy food that still feels like <em>proper home cooking.</em></h1>
+      <p class="lead">Freshly prepared, balanced meals made with care and full of flavour — ready to enjoy every day. No cooking, no compromise.</p>
+      <div class="hero-cta">
+        <a href="#menu" class="btn btn-primary">View this week's menu →</a>
+        <a href="#how" class="btn btn-ghost">How it works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><b>12</b><span>meals each week</span></div>
+        <div class="s"><b>Sun</b><span>fresh delivery day</span></div>
+        <div class="s"><b>100%</b><span>made with care</span></div>
+      </div>
+    </div>
+    <div class="hero-art reveal show">
+      <div class="plate"><div class="plate-inner"></div></div>
+      <div class="chip c1"><span class="dot" style="background:var(--teal-400)"></span>Balanced portions</div>
+      <div class="chip c2"><span class="dot" style="background:var(--lime)"></span>Rotating menu</div>
+      <div class="chip c3"><span class="dot" style="background:var(--teal-700)"></span>Ready to eat</div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="track">
+    <span>Fresh ingredients</span><span>·</span><span><b>Made with care</b></span><span>·</span><span>Full of flavour</span><span>·</span><span>No more takeaways</span><span>·</span><span><b>Home-style comfort</b></span><span>·</span><span>Eat well, easily</span><span>·</span>
+    <span>Fresh ingredients</span><span>·</span><span><b>Made with care</b></span><span>·</span><span>Full of flavour</span><span>·</span><span>No more takeaways</span><span>·</span><span><b>Home-style comfort</b></span><span>·</span><span>Eat well, easily</span><span>·</span>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="block values">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Vin's Meals</span>
+      <h2>Eating well, without the hassle.</h2>
+      <p>Made for busy people who want to eat better without always having time to cook from scratch.</p>
+    </div>
+    <div class="val-grid">
+      <div class="val reveal"><div class="ico">🌿</div><h3>Fresh & healthy</h3><p>Quality ingredients, balanced portions, prepared with freshness at the front of mind.</p></div>
+      <div class="val reveal"><div class="ico">🍲</div><h3>Home-style comfort</h3><p>Satisfying, familiar food that carries the warmth of proper home cooking.</p></div>
+      <div class="val reveal"><div class="ico">⏱️</div><h3>Genuinely convenient</h3><p>Ready to eat all week. A real alternative to takeaways and rushed lunches.</p></div>
+      <div class="val reveal"><div class="ico">🔄</div><h3>Always changing</h3><p>A rotating weekly menu so you stay consistent without ever getting bored.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="block how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Simple weekly rhythm</span>
+      <h2>How it works</h2>
+      <p>Three easy steps from menu to your fridge. Order once, eat well all week.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><span class="day">Monday</span><h3>Menu goes live</h3><p>The new weekly menu drops every Monday. Browse the meals and plan your week ahead.</p></div>
+      <div class="step reveal"><div class="num">02</div><span class="day">Thursday afternoon</span><h3>Order deadline</h3><p>Place your order by Thursday afternoon so everything can be prepared fresh, with care.</p></div>
+      <div class="step reveal"><div class="num">03</div><span class="day">Sunday</span><h3>Fresh delivery</h3><p>Freshly prepared meals arrive Sunday, ready to enjoy throughout the week.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU / ORDER BUILDER -->
+<section class="block menu" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">This week's menu</span>
+      <h2>Build your box.</h2>
+      <p>Tap any meal to add it to your order. Mix and match meat and veg however you like — your order total updates as you go.</p>
+    </div>
+    <div class="menu-tabs reveal">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="meat">Meat</button>
+      <button class="tab" data-filter="veg">Veg</button>
+    </div>
+    <div class="meal-grid" id="mealGrid"></div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="block trust">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Made with care</span>
+      <blockquote class="tquote">"Healthy food should still feel <span>satisfying, familiar and full of warmth</span> — not restrictive or complicated."</blockquote>
+      <div class="tcred">— The Vin's Meals promise</div>
+      <div class="badges">
+        <div class="badge"><span class="b-ico">🥗</span>Balanced portions</div>
+        <div class="badge"><span class="b-ico">🧊</span>Prepared fresh, never frozen-by-default</div>
+        <div class="badge"><span class="b-ico">📋</span>Full ingredient transparency</div>
+        <div class="badge"><span class="b-ico">💚</span>Made locally, with care</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Good to know</span>
+      <h2>Questions, answered.</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal"><button class="faq-q">When do I need to order by?<span class="pm">+</span></button><div class="faq-a"><p>Orders must be placed by Thursday afternoon. This lets us prepare everything fresh, ready for Sunday delivery.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">When are meals delivered?<span class="pm">+</span></button><div class="faq-a"><p>All orders are freshly prepared and delivered on Sunday, ready to enjoy throughout the week.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Does the menu change?<span class="pm">+</span></button><div class="faq-a"><p>Yes — a fresh, rotating menu goes live every Monday so you always have variety to look forward to.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Who is this for?<span class="pm">+</span></button><div class="faq-a"><p>Anyone who wants to eat better without cooking from scratch — professionals, gym-goers, parents, students, and busy households.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">How do I place my order?<span class="pm">+</span></button><div class="faq-a"><p>Build your box from the menu above, then send it to us in one tap. We'll confirm your order and delivery details directly.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Are portions balanced?<span class="pm">+</span></button><div class="faq-a"><p>Every meal is prepared with attention to freshness, portion balance and flavour — helping you stay consistent with your goals.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap reveal">
+    <h2>Ready to eat well, <em>the easy way?</em></h2>
+    <p>Build this week's box and we'll take care of the rest. Fresh, balanced, full of flavour.</p>
+    <a href="#menu" class="btn btn-primary">Start your order →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap inner">
+    <span>© <span id="yr"></span> Vin's Meals · Fresh meal prep, made with care</span>
+    <span>vinsmeals.com</span>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your order</h3>
+    <button class="drawer-close" id="closeDrawer">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <div class="min-warn hidden" id="minWarn"></div>
+    <div class="tot-row"><span class="lbl">Total</span><span class="amt" id="totalAmt">£0</span></div>
+    <button class="btn btn-primary" id="checkoutBtn">Send order via WhatsApp</button>
+    <p class="note">No payment taken here — we'll confirm your order, delivery & payment by message.</p>
+  </div>
+</aside>
+
+<script>
+/* =============================================================
+   VIN'S MEALS — EASY EDITS
+   1. PRICE_PER_MEAL  → change the £ price of one meal
+   2. MIN_MEALS       → minimum meals per order (set 0 to disable)
+   3. WHATSAPP_NUMBER → Vin's number, intl format, no + or spaces
+   4. MEALS array     → swap in the real meal names & descriptions
+   ============================================================= */
+const PRICE_PER_MEAL   = 7;            // £ per meal — EDIT ME
+const MIN_MEALS        = 0;            // e.g. 5 to require a minimum
+const WHATSAPP_NUMBER  = "447000000000"; // EDIT ME (placeholder)
+
+const MEALS = [
+  // ---- 8 MEAT ----
+  {id:1, type:"meat", name:"Peri Chicken & Rice",        desc:"Grilled peri-peri chicken, seasoned rice, roast peppers.", bg:"bg-a"},
+  {id:2, type:"meat", name:"Beef Chilli Bowl",           desc:"Slow-cooked beef chilli, rice, kidney beans.",            bg:"bg-c"},
+  {id:3, type:"meat", name:"Honey Garlic Salmon",        desc:"Glazed salmon, greens, lemon potatoes.",                 bg:"bg-b"},
+  {id:4, type:"meat", name:"Chicken Tikka Masala",       desc:"Creamy tikka masala, basmati, charred onion.",           bg:"bg-e"},
+  {id:5, type:"meat", name:"Turkey Meatballs & Pasta",   desc:"Lean turkey meatballs, tomato sauce, wholewheat pasta.", bg:"bg-f"},
+  {id:6, type:"meat", name:"Jerk Chicken & Rice 'n' Peas",desc:"Jerk-spiced chicken, rice & peas, slaw.",                bg:"bg-a"},
+  {id:7, type:"meat", name:"Steak & Sweet Potato",       desc:"Seared steak strips, roast sweet potato, broccoli.",     bg:"bg-c"},
+  {id:8, type:"meat", name:"Lamb Kofta & Couscous",      desc:"Spiced lamb kofta, herby couscous, yoghurt drizzle.",    bg:"bg-e"},
+  // ---- 4 VEG ----
+  {id:9, type:"veg",  name:"Chickpea & Spinach Curry",   desc:"Hearty chickpea curry, spinach, fluffy rice.",           bg:"bg-d"},
+  {id:10,type:"veg",  name:"Halloumi Mediterranean Bowl",desc:"Grilled halloumi, roast veg, couscous.",                 bg:"bg-b"},
+  {id:11,type:"veg",  name:"Tofu Teriyaki Stir-Fry",     desc:"Crispy tofu, teriyaki veg, noodles.",                    bg:"bg-f"},
+  {id:12,type:"veg",  name:"Sweet Potato & Bean Chilli", desc:"Smoky bean & sweet potato chilli, rice.",                bg:"bg-d"},
+];
+
+const fmt = n => "£" + (Number.isInteger(n) ? n : n.toFixed(2));
+const cart = {}; // id -> qty
+
+/* ---- render meal grid ---- */
+const grid = document.getElementById('mealGrid');
+function glyph(name){return name.trim()[0];}
+MEALS.forEach(m=>{
+  const el = document.createElement('div');
+  el.className = 'meal reveal';
+  el.dataset.type = m.type;
+  el.dataset.id = m.id;
+  el.innerHTML = `
+    <div class="meal-thumb ${m.bg}">
+      <span class="${m.type==='veg'?'veg-tag':'meat-tag'}">${m.type==='veg'?'Veg':'Meat'}</span>
+      <span class="glyph">${glyph(m.name)}</span>
+    </div>
+    <div class="meal-body">
+      <h4>${m.name}</h4>
+      <p class="desc">${m.desc}</p>
+      <div class="meal-foot">
+        <span class="price">${fmt(PRICE_PER_MEAL)}</span>
+        <div class="add-ctrl" data-ctrl="${m.id}"></div>
+      </div>
+    </div>`;
+  el.querySelector('.meal-thumb').addEventListener('click',()=>add(m.id));
+  grid.appendChild(el);
+  renderCtrl(m.id);
+});
+
+function renderCtrl(id){
+  const wrap = document.querySelector(`[data-ctrl="${id}"]`);
+  const q = cart[id]||0;
+  if(q>0){
+    wrap.innerHTML = `<div class="qty-ctrl"><button data-m="${id}">−</button><span>${q}</span><button data-p="${id}">+</button></div>`;
+    wrap.querySelector('[data-m]').onclick = e=>{e.stopPropagation();remove(id);};
+    wrap.querySelector('[data-p]').onclick = e=>{e.stopPropagation();add(id);};
+  } else {
+    wrap.innerHTML = `<button class="add-btn" title="Add">+</button>`;
+    wrap.querySelector('.add-btn').onclick = e=>{e.stopPropagation();add(id);};
+  }
+  document.querySelector(`.meal[data-id="${id}"]`).classList.toggle('in-cart',q>0);
+}
+
+function add(id){cart[id]=(cart[id]||0)+1;sync(id);}
+function remove(id){if(!cart[id])return;cart[id]--;if(cart[id]<=0)delete cart[id];sync(id);}
+function sync(id){renderCtrl(id);renderCart();}
+
+/* ---- cart ---- */
+function totalMeals(){return Object.values(cart).reduce((a,b)=>a+b,0);}
+function renderCart(){
+  const n = totalMeals();
+  document.getElementById('navCount').textContent = n;
+  document.getElementById('totalAmt').textContent = fmt(n*PRICE_PER_MEAL);
+  const body = document.getElementById('drawerBody');
+  if(n===0){
+    body.innerHTML = `<div class="cart-empty"><div class="big">🥗</div><p>Your box is empty.<br>Tap meals from the menu to add them.</p></div>`;
+  } else {
+    body.innerHTML = '';
+    Object.entries(cart).forEach(([id,q])=>{
+      const m = MEALS.find(x=>x.id==id);
+      const row = document.createElement('div');
+      row.className='cart-item';
+      row.innerHTML = `
+        <div class="sw ${m.bg}"></div>
+        <div class="ci-info"><b>${m.name}</b><span>${fmt(PRICE_PER_MEAL)} each</span></div>
+        <div class="ci-qty"><button data-m="${id}">−</button><span>${q}</span><button data-p="${id}">+</button></div>`;
+      row.querySelector('[data-m]').onclick=()=>remove(id);
+      row.querySelector('[data-p]').onclick=()=>add(id);
+      body.appendChild(row);
+    });
+  }
+  // min order
+  const warn = document.getElementById('minWarn');
+  const btn  = document.getElementById('checkoutBtn');
+  if(MIN_MEALS>0 && n>0 && n<MIN_MEALS){
+    warn.classList.remove('hidden');
+    warn.textContent = `Minimum ${MIN_MEALS} meals per order — add ${MIN_MEALS-n} more.`;
+    btn.style.opacity=.5;btn.style.pointerEvents='none';
+  } else {
+    warn.classList.add('hidden');
+    btn.style.opacity=1;btn.style.pointerEvents='auto';
+  }
+}
+
+/* ---- drawer ---- */
+const overlay=document.getElementById('overlay'),drawer=document.getElementById('drawer');
+function openDrawer(){overlay.classList.add('open');drawer.classList.add('open');}
+function closeDrawer(){overlay.classList.remove('open');drawer.classList.remove('open');}
+document.getElementById('cartBtn').onclick=openDrawer;
+document.getElementById('closeDrawer').onclick=closeDrawer;
+overlay.onclick=closeDrawer;
+
+/* ---- checkout → WhatsApp ---- */
+document.getElementById('checkoutBtn').onclick=()=>{
+  const n=totalMeals();
+  if(n===0){openDrawer();return;}
+  let msg = "Hi Vin's Meals! I'd like to order this week:%0A%0A";
+  Object.entries(cart).forEach(([id,q])=>{
+    const m=MEALS.find(x=>x.id==id);
+    msg += `• ${q} × ${m.name}%0A`;
+  });
+  msg += `%0ATotal: ${fmt(n*PRICE_PER_MEAL)} (${n} meals)%0A%0AMy name:%0AMy delivery address:`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`,'_blank');
+};
+
+/* ---- tabs ---- */
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    const f=t.dataset.filter;
+    document.querySelectorAll('.meal').forEach(m=>{
+      m.classList.toggle('hidden', !(f==='all'||m.dataset.type===f));
+    });
+  };
+});
+
+/* ---- faq ---- */
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.onclick=()=>{
+    const item=q.parentElement;
+    const a=item.querySelector('.faq-a');
+    const open=item.classList.toggle('open');
+    a.style.maxHeight = open ? a.scrollHeight+'px' : 0;
+  };
+});
+
+/* ---- scroll reveal ---- */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+renderCart();
+</script>
+</body>
+</html>
